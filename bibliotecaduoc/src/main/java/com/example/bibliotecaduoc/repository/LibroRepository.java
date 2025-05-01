@@ -45,28 +45,20 @@ public class LibroRepository {
     }
 
     //Metodo que actualiza el libro por el id, retorna libro actualizado
-    public Libro actualizar(Libro lib) {
-        int id = 0;
-        int idPosicion = 0;
-
-        for (int i = 0; i < listaLibros.size(); i++) {
-            if (listaLibros.get(i).getId() == lib.getId()) {
-                id = lib.getId();
-                idPosicion = i;
+    public Libro actualizar(Libro nuevoLibro){
+        for (Libro libro : listaLibros) {
+            if(libro.getId() == nuevoLibro.getId()){
+                libro.setId(nuevoLibro.getId());
+                libro.setTitulo(nuevoLibro.getTitulo());
+                libro.setAutor(nuevoLibro.getAutor());
+                libro.setFechaPublicacion(nuevoLibro.getFechaPublicacion());
+                libro.setEditorial(nuevoLibro.getEditorial());
+                libro.setIsbn(nuevoLibro.getIsbn());
+                return libro;
             }
-
         }
-
-        Libro libro1 = new Libro();
-        libro1.setId(id);
-        libro1.setTitulo(libro1.getTitulo());
-        libro1.setAutor(libro1.getAutor());
-        libro1.setFechaPublicacion(libro1.getFechaPublicacion());
-        libro1.setEditorial(libro1.getEditorial());
-        libro1.setIsbn(libro1.getIsbn());
-
-        listaLibros.set(idPosicion, libro1);
-        return libro1;
+        System.out.println("El libro no existe!, usar guardar libro!");
+        return null;
     }
 
     //Metodo que borra el libro por su id
